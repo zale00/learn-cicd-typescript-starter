@@ -22,8 +22,8 @@ export function middlewareAuth(
       }
 
       handler(req, res, user);
-    } catch {
-      respondWithError(res, 500, "Couldn't authenticate user");
+    } catch (err) {
+      respondWithError(res, 500, "Couldn't authenticate user", err);
     }
   };
 }

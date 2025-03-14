@@ -8,8 +8,8 @@ export async function handlerNotesGet(req: Request, res: Response, user: User) {
   try {
     const posts = await getNotesForUser(user.id);
     respondWithJSON(res, 200, posts);
-  } catch {
-    respondWithError(res, 500, "Couldn't retrieve notes");
+  } catch (err) {
+    respondWithError(res, 500, "Couldn't retrieve notes", err);
   }
 }
 
@@ -32,7 +32,7 @@ export async function handlerNotesCreate(
 
     const createdNote = await getNote(noteId);
     respondWithJSON(res, 201, createdNote);
-  } catch {
-    respondWithError(res, 500, "Couldn't create note");
+  } catch (err) {
+    respondWithError(res, 500, "Couldn't create note", err);
   }
 }
