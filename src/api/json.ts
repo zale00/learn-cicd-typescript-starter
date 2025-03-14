@@ -1,6 +1,15 @@
 import type { Response } from "express";
 
-export function respondWithError(res: Response, code: number, message: string) {
+export function respondWithError(
+  res: Response,
+  code: number,
+  message: string,
+  logError?: unknown,
+) {
+  if (logError) {
+    console.log(errStringFromError(logError));
+  }
+
   respondWithJSON(res, code, { error: message });
 }
 
@@ -12,4 +21,17 @@ export function respondWithJSON(res: Response, code: number, payload: unknown) {
   const body = JSON.stringify(payload);
   res.status(code).send(body);
   res.end();
+}
+
+function errStringFromError(err: unknown): string {
+  if (typeof err === "string") {
+    return err;
+  }
+  if (err instanceof Error) {
+    return err.message;
+  }
+  if (err) {
+    return String(err);
+  }
+  return "An unknown error occurred";
 }
