@@ -7,7 +7,7 @@ export function respondWithError(
   logError?: unknown
 ) {
   if (logError) {
-    console.log(e / rrStringFromError(logError));
+    console.log(errStringFromError(logError));
   }
 
   respondWithJSON(res, code, { error: message });
