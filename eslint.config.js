@@ -28,10 +28,10 @@ export default [
     },
     plugins: {
       "@typescript-eslint": tseslint,
+      security: pluginSecurity,
     },
     rules: {
       ...tseslint.configs.recommended.rules,
-      ...pluginSecurity.configs.recommended.rules,
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/no-explicit-any": "warn",
     },
