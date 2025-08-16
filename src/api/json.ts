@@ -4,10 +4,10 @@ export function respondWithError(
   res: Response,
   code: number,
   message: string,
-  logError?: unknown,
+  logError?: unknown
 ) {
   if (logError) {
-    console.log(errStringFromError(logError));
+    console.log(e / rrStringFromError(logError));
   }
 
   respondWithJSON(res, code, { error: message });
